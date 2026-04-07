@@ -231,53 +231,39 @@ particlesJS("particles-js", {
 })();
 
 /* ────────────────────────────────
-   8.  3D TILT EFFECT ON CARDS
+   8. REAL 3D TILT EFFECT
 ──────────────────────────────── */
-(function initTilt() {
-  const cards = document.querySelectorAll(".tilt-card");
+const cards = document.querySelectorAll(".tilt-card");
 
-  cards.forEach(card => {
-    let bounds;
+cards.forEach(card => {
+  let bounds;
 
-    function refreshBounds() {
-      bounds = card.getBoundingClientRect();
-    }
+  function rotate(e) {
+    bounds = card.getBoundingClientRect();
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
 
-    card.addEventListener("mouseenter", () => {
-      refreshBounds();
-      card.style.transition = "transform 0.1s ease, box-shadow 0.3s ease";
-    });
+    const centerX = bounds.width / 2;
+    const centerY = bounds.height / 2;
 
-    card.addEventListener("mousemove", e => {
-      if (!bounds) return;
-      const x = e.clientX - bounds.left;
-      const y = e.clientY - bounds.top;
-      const xPct = (x / bounds.width  - 0.5) * 2;
-      const yPct = (y / bounds.height - 0.5) * 2;
+    const rotateX = -(y - centerY) / 12;
+    const rotateY = (x - centerX) / 12;
 
-      const rotateX = -yPct * 6;
-      const rotateY =  xPct * 6;
+    card.style.transform = `
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.03)
+    `;
+  }
 
-      gsap.to(card, {
-        rotateX,
-        rotateY,
-        duration: 0.2,
-        ease: "power1.out",
-        transformPerspective: 900,
-        transformOrigin: "center center"
-      });
-    });
+  function reset() {
+    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  }
 
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, {
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.6,
-        ease: "elastic.out(1, 0.4)"
-      });
-    });
-  });
-})();
+  card.addEventListener("mousemove", rotate);
+  card.addEventListener("mouseleave", reset);
+});
+
 
 /* ────────────────────────────────
    9.  MAGNETIC BUTTONS
@@ -453,3 +439,4 @@ console.log(
   "color:#00f5ff;font-family:monospace;font-size:14px;font-weight:bold;",
   "color:#8a2be2;font-family:monospace;font-size:12px;"
 );
+
