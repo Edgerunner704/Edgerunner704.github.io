@@ -1,80 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Prabhu | Portfolio</title>
-
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prabhu — Mechanical Engineer & Robotics Enthusiast</title>
+  <link rel="stylesheet" href="style.css" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Syne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
 
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-  <!-- Particles -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <!-- Particles.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
-
 <body>
 
-<div id="particles-js"></div>
-<div class="cursor"></div>
+  <!-- Custom Cursor -->
+  <div class="cursor-outer" id="cursorOuter"></div>
+  <div class="cursor-inner" id="cursorInner"></div>
 
-<!-- HERO -->
-<section id="hero">
-  <h1>Prabhu</h1>
-  <p>Mechanical Engineer | Robotics & AI Enthusiast</p>
-</section>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-name">Prabhu</span>
+      <span class="logo-bracket">/&gt;</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-<!-- ABOUT -->
-<section class="section">
-  <h2>About</h2>
-  <p class="fade">
-    Passionate mechanical engineer exploring robotics systems and AI-driven engineering solutions.
-  </p>
-</section>
-
-<!-- SKILLS -->
-<section class="section">
-  <h2>Skills</h2>
-  <div class="grid">
-    <div class="card">Python</div>
-    <div class="card">AutoCAD</div>
-    <div class="card">PCB Design</div>
-    <div class="card">Robotics</div>
-    <div class="card">Machine Learning</div>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#skills" class="mobile-link">Skills</a></li>
+      <li><a href="#projects" class="mobile-link">Projects</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
   </div>
-</section>
 
-<!-- PROJECTS -->
-<section class="section">
-  <h2>Projects</h2>
+  <!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div id="particles-js"></div>
 
-  <div class="grid">
-    <div class="card tilt">
-      <h3>FSW UTS Prediction</h3>
-      <p>ML-based prediction of weld strength</p>
+    <!-- Ambient blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="hero-content">
+      <!-- Eyebrow -->
+      <p class="hero-eyebrow" id="heroEyebrow">
+        <span class="eyebrow-line"></span>
+        <span>Hello, World</span>
+        <span class="eyebrow-line"></span>
+      </p>
+
+      <!-- Name -->
+      <h1 class="hero-name" id="heroName">
+        <span class="name-line" data-text="PRABHU">PRABHU</span>
+      </h1>
+
+      <!-- Tagline -->
+      <div class="hero-tagline" id="heroTagline">
+        <span class="tagline-text">Mechanical Engineer</span>
+        <span class="tagline-sep">|</span>
+        <span class="tagline-text typed-text" id="typedText"></span>
+      </div>
+
+      <!-- CTA -->
+      <div class="hero-cta" id="heroCta">
+        <a href="#projects" class="btn btn-primary magnetic-btn">
+          <span class="btn-inner">View My Work</span>
+          <span class="btn-glow"></span>
+        </a>
+        <a href="#contact" class="btn btn-ghost magnetic-btn">
+          <span class="btn-inner">Get In Touch</span>
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
     </div>
 
-    <div class="card tilt">
-      <h3>Fatigue Life Prediction</h3>
-      <p>Material life modeling using ML</p>
+    <!-- Stats strip -->
+    <div class="hero-stats" id="heroStats">
+      <div class="stat">
+        <span class="stat-num">3+</span>
+        <span class="stat-label">Research Projects</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">ML</span>
+        <span class="stat-label">Driven Analysis</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">FEA</span>
+        <span class="stat-label">Simulation Expert</span>
+      </div>
     </div>
+  </section>
 
-    <div class="card tilt">
-      <h3>Drone Design & Analysis</h3>
-      <p>Frame optimization & simulation</p>
+  <!-- ══════════════════════════════════ ABOUT ══════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="section-inner">
+
+      <div class="section-label reveal-up">
+        <span class="label-line"></span>
+        <span>01 — About</span>
+      </div>
+
+      <div class="about-grid">
+        <!-- Text -->
+        <div class="about-text">
+          <h2 class="section-title reveal-up">
+            Engineering the<br/>
+            <span class="gradient-text">Future.</span>
+          </h2>
+          <p class="about-body reveal-up">
+            I'm a <strong>Mechanical Engineer</strong> with a deep passion for
+            <strong>Robotics</strong> and <strong>Artificial Intelligence</strong>.
+            My work sits at the intersection of classical mechanics and cutting-edge
+            computation — turning real-world engineering challenges into data-driven
+            solutions.
+          </p>
+          <p class="about-body reveal-up">
+            From predicting weld strength with machine learning to designing structural
+            drone frames, I combine <strong>FEA simulation</strong>, <strong>material
+            science</strong>, and <strong>predictive modelling</strong> to push what's
+            physically possible. I believe the best machines aren't just built — they
+            are <em>intelligently designed</em>.
+          </p>
+          <div class="about-tags reveal-up">
+            <span class="tag">FEA / FEM</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Robotics</span>
+            <span class="tag">CAD / CAM</span>
+            <span class="tag">Python</span>
+            <span class="tag">Dynamics</span>
+          </div>
+        </div>
+
+        <!-- Visual card -->
+        <div class="about-visual reveal-right">
+          <div class="visual-card glass-card">
+            <div class="vc-header">
+              <span class="vc-dot red"></span>
+              <span class="vc-dot yellow"></span>
+              <span class="vc-dot green"></span>
+              <span class="vc-title">profile.json</span>
+            </div>
+            <pre class="vc-code"><span class="c-bracket">{</span>
+  <span class="c-key">"name"</span>: <span class="c-str">"Prabhu"</span>,
+  <span class="c-key">"role"</span>: <span class="c-str">"Mechanical Engineer"</span>,
+  <span class="c-key">"focus"</span>: [
+    <span class="c-str">"Robotics"</span>,
+    <span class="c-str">"AI / ML"</span>,
+    <span class="c-str">"Structural Analysis"</span>
+  ],
+  <span class="c-key">"tools"</span>: [
+    <span class="c-str">"ANSYS"</span>, <span class="c-str">"SolidWorks"</span>,
+    <span class="c-str">"Python"</span>, <span class="c-str">"MATLAB"</span>
+  ],
+  <span class="c-key">"status"</span>: <span class="c-cyan">"Building the Future"</span>
+<span class="c-bracket">}</span></pre>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section class="section">
-  <h2>Contact</h2>
-  <p>prabhu@email.com</p>
-</section>
+  <!-- ══════════════════════════════════ SKILLS ══════════════════════════════════ -->
+  <section class="skills" id="skills">
+    <div class="section-inner">
 
-<script src="script.js"></script>
+      <div class="section-label reveal-up">
+        <span class="label-line"></span>
+        <span>02 — Skills</span>
+      </div>
+
+      <h2 class="section-title reveal-up">
+        Core <span class="gradient-text">Expertise</span>
+      </h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-card glass-card tilt-card reveal-up">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="var(--neon)" stroke-width="1.5"/><path d="M16 28 C16 20 32 20 32 28" stroke="var(--purple)" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="18" r="4" stroke="var(--neon)" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Structural Analysis</h3>
+          <p>FEA/FEM using ANSYS & SolidWorks Simulation for stress, fatigue and thermal analysis.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+
+        <div class="skill-card glass-card tilt-card reveal-up" style="--delay:0.1s">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="8" width="32" height="32" rx="4" stroke="var(--neon)" stroke-width="1.5"/><path d="M14 24h20M24 14v20" stroke="var(--purple)" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Machine Learning</h3>
+          <p>Predictive models using scikit-learn, regression & neural networks for engineering data.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+          <span class="skill-pct">82%</span>
+        </div>
+
+        <div class="skill-card glass-card tilt-card reveal-up" style="--delay:0.2s">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M12 36 L24 12 L36 36" stroke="var(--neon)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28h16" stroke="var(--purple)" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>CAD / CAM</h3>
+          <p>3D modelling, assembly and manufacturing process planning in SolidWorks & CATIA.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+
+        <div class="skill-card glass-card tilt-card reveal-up" style="--delay:0.3s">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" stroke="var(--neon)" stroke-width="1.5"/><circle cx="24" cy="24" r="16" stroke="var(--purple)" stroke-width="1" stroke-dasharray="4 3"/><path d="M24 8v4M24 36v4M8 24h4M36 24h4" stroke="var(--neon)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Robotics Systems</h3>
+          <p>Kinematics, dynamics, control systems and autonomous navigation principles.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+          <span class="skill-pct">78%</span>
+        </div>
+
+        <div class="skill-card glass-card tilt-card reveal-up" style="--delay:0.4s">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><polyline points="8,36 18,20 28,28 38,12" stroke="var(--neon)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="20" r="3" fill="var(--purple)"/><circle cx="28" cy="28" r="3" fill="var(--purple)"/></svg>
+          </div>
+          <h3>Data Analysis</h3>
+          <p>Python (NumPy, Pandas, Matplotlib), MATLAB for engineering datasets and visualisation.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+          <span class="skill-pct">85%</span>
+        </div>
+
+        <div class="skill-card glass-card tilt-card reveal-up" style="--delay:0.5s">
+          <div class="skill-icon">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="16" width="28" height="20" rx="3" stroke="var(--neon)" stroke-width="1.5"/><path d="M18 16V12a6 6 0 0112 0v4" stroke="var(--purple)" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="26" r="3" fill="var(--neon)" fill-opacity="0.3" stroke="var(--neon)" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Material Science</h3>
+          <p>Metallurgy, welding metallurgy, fatigue theory and failure analysis.</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ PROJECTS ══════════════════════════════════ -->
+  <section class="projects" id="projects">
+    <div class="section-inner">
+
+      <div class="section-label reveal-up">
+        <span class="label-line"></span>
+        <span>03 — Projects</span>
+      </div>
+
+      <h2 class="section-title reveal-up">
+        Featured <span class="gradient-text">Work</span>
+      </h2>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card glass-card tilt-card reveal-up">
+          <div class="project-number">01</div>
+          <div class="project-accent-line"></div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="ptag">Machine Learning</span>
+              <span class="ptag">Manufacturing</span>
+              <span class="ptag">Python</span>
+            </div>
+            <h3 class="project-title">Friction Stir Weld<br/><span class="gradient-text">UTS Prediction</span></h3>
+            <p class="project-desc">
+              Developed a machine learning model to predict the Ultimate Tensile Strength (UTS)
+              of Friction Stir Welded joints. Used process parameters — rotational speed, feed rate,
+              and tool geometry — as inputs to train regression and ensemble models, significantly
+              reducing trial-and-error in weld process optimisation.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-val">95%+</span>
+                <span class="metric-label">Prediction Accuracy</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">R²</span>
+                <span class="metric-label">High Correlation</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span>scikit-learn</span>
+                <span>Pandas</span>
+                <span>XGBoost</span>
+              </div>
+              <a href="#" class="project-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="project-glow"></div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card tilt-card reveal-up" style="--delay:0.15s">
+          <div class="project-number">02</div>
+          <div class="project-accent-line" style="--accent-color: var(--purple)"></div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="ptag purple">Fatigue Analysis</span>
+              <span class="ptag purple">FEA</span>
+              <span class="ptag purple">ML</span>
+            </div>
+            <h3 class="project-title">Fatigue & Material<br/><span class="gradient-text-purple">Life Prediction</span></h3>
+            <p class="project-desc">
+              Built a hybrid prediction framework combining classical S-N curve analysis with
+              machine learning to forecast the fatigue life of engineering materials under
+              cyclic loading. Integrated FEA stress results as features for a neural network
+              model, enabling rapid life estimation without full experimental cycles.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-val">S-N</span>
+                <span class="metric-label">Curve Integration</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">FEA</span>
+                <span class="metric-label">Driven Inputs</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span>ANSYS</span>
+                <span>Python</span>
+                <span>TensorFlow</span>
+              </div>
+              <a href="#" class="project-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="project-glow purple-glow"></div>
+        </div>
+
+        <!-- Project 3 — Wide -->
+        <div class="project-card project-card-wide glass-card tilt-card reveal-up" style="--delay:0.3s">
+          <div class="project-number">03</div>
+          <div class="project-accent-line" style="--accent-color: #00ffa3"></div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="ptag green">Drone Design</span>
+              <span class="ptag green">Structural FEA</span>
+              <span class="ptag green">CAD</span>
+            </div>
+            <h3 class="project-title">Drone Frame Design<br/><span style="background: linear-gradient(90deg,#00ffa3,#00f5ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">& Structural Analysis</span></h3>
+            <p class="project-desc">
+              Designed a lightweight multi-rotor drone frame in SolidWorks with topology
+              optimisation to minimise weight while maintaining structural rigidity.
+              Performed comprehensive FEA in ANSYS — static stress, modal analysis and
+              aerodynamic load simulation — to validate performance under real flight conditions.
+              Achieved a 23% weight reduction versus baseline design with improved stiffness-to-weight ratio.
+            </p>
+            <div class="project-metrics">
+              <div class="metric">
+                <span class="metric-val">23%</span>
+                <span class="metric-label">Weight Reduction</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">Modal</span>
+                <span class="metric-label">Vibration Analysis</span>
+              </div>
+              <div class="metric">
+                <span class="metric-val">Topo</span>
+                <span class="metric-label">Optimisation</span>
+              </div>
+            </div>
+            <div class="project-footer">
+              <div class="project-tech">
+                <span>SolidWorks</span>
+                <span>ANSYS</span>
+                <span>CFD</span>
+                <span>Topology Opt.</span>
+              </div>
+              <a href="#" class="project-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="project-glow green-glow"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ CONTACT ══════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+
+      <!-- Background text -->
+      <div class="contact-bg-text">CONNECT</div>
+
+      <div class="section-label reveal-up">
+        <span class="label-line"></span>
+        <span>04 — Contact</span>
+      </div>
+
+      <div class="contact-inner">
+        <h2 class="contact-title reveal-up">
+          Let's Build<br/>
+          <span class="gradient-text">Something Real.</span>
+        </h2>
+        <p class="contact-sub reveal-up">
+          Open to research collaborations, internships and exciting engineering challenges.
+          Drop a message — I read everything.
+        </p>
+
+        <div class="contact-cards reveal-up">
+          <a href="mailto:prabhu@email.com" class="contact-card glass-card magnetic-btn">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            </div>
+            <span class="cc-label">Email Me</span>
+            <span class="cc-value">prabhu@email.com</span>
+          </a>
+
+          <a href="https://linkedin.com" target="_blank" class="contact-card glass-card magnetic-btn">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 10v7"/></svg>
+            </div>
+            <span class="cc-label">LinkedIn</span>
+            <span class="cc-value">Connect with me</span>
+          </a>
+
+          <a href="https://github.com" target="_blank" class="contact-card glass-card magnetic-btn">
+            <div class="cc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </div>
+            <span class="cc-label">GitHub</span>
+            <span class="cc-value">View my code</span>
+          </a>
+        </div>
+
+        <div class="contact-bottom reveal-up">
+          <a href="mailto:prabhu@email.com" class="btn btn-primary magnetic-btn large-btn">
+            <span class="btn-inner">Send a Message</span>
+            <span class="btn-glow"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-bracket">&lt;</span>
+        <span>Prabhu</span>
+        <span class="logo-bracket">/&gt;</span>
+      </div>
+      <p class="footer-copy">
+        © 2025 Prabhu — Mechanical Engineer & Robotics Enthusiast
+      </p>
+      <p class="footer-made">Engineered with passion.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
