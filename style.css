@@ -987,8 +987,62 @@ section { position: relative; }
 /* ──────────────────────────────────────────────
    TILT (3D) — JS controlled
 ────────────────────────────────────────────── */
-.tilt-card { transform-style: preserve-3d; will-change: transform; }
+/* ──────────────────────────────────────────────
+   REAL 3D DEPTH SYSTEM
+────────────────────────────────────────────── */
 
+/* Parent perspective */
+.skills-grid,
+.projects-grid,
+.contact-cards {
+  perspective: 1200px;
+}
+
+/* Base tilt */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s ease-out, box-shadow 0.3s;
+}
+
+/* Hover lift */
+.tilt-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Inner depth */
+.tilt-card > * {
+  transform: translateZ(20px);
+}
+
+/* Important elements pop more */
+.project-title,
+.skill-card h3,
+.cc-label {
+  transform: translateZ(40px);
+}
+
+/* Glow boost */
+.tilt-card:hover {
+  box-shadow:
+    0 20px 60px rgba(0,245,255,0.15),
+    0 0 40px rgba(138,43,226,0.1);
+}
+.project-content,
+.skill-card,
+.contact-card {
+  transform-style: preserve-3d;
+}
+
+.project-desc,
+.skill-card p {
+  transform: translateZ(25px);
+}
+
+.project-number {
+  transform: translateZ(60px);
+  opacity: 0.08;
+}
 /* ──────────────────────────────────────────────
    RESPONSIVE
 ────────────────────────────────────────────── */
